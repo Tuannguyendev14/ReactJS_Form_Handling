@@ -24,6 +24,7 @@ export default class Form extends Component{
 	render(){
 		return (
 			<div>
+				<div className="container">
 					<legend>Test refs</legend>
 					<div className="form-group">
 						<div className="row my-padding-bottom-19">
@@ -69,7 +70,8 @@ export default class Form extends Component{
 							<button type="button" className="btn btn-sm btn-success" onClick={this.addProduct}> Add</button>
 						</div>
 					</div>
-				</div>
+				</div>	
+			</div>
 		);
 	}
 

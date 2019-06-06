@@ -2,22 +2,25 @@ import React,{Component} from 'react';
 
 
 export default class Product extends Component{
+
 	constructor(props){
 		super(props);
 		this.addToCard=this.addToCard.bind(this);	
 	}
-
-
-
 	addToCard(){
-		alert(this.props.children);
+		alert(this.props.id);
 	}
 	
 	addToCard2 = () => {
 		alert(this.props.children);
 	}
 
+
+	 
+
 	render(){
+		 
+
 		return (
 			<div>
 			 	<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
@@ -29,8 +32,8 @@ export default class Product extends Component{
 			 					{this.props.price} VND	
 			 				</p>
 			 				<p>
-			 					<a  className="btn btn-primary" onClick={this.addToCard }>Cach1</a>
-			 					<a  className="btn btn-warning" onClick={this.addToCard2 }>Cach2</a>
+			 					<a  className="btn btn-primary"  href="true" onClick={this.addToCard2 }>Detail</a>
+			 					<a  className="btn btn-warning"   href="true"  onClick={this.addToCard2 }>Cach2</a>
 			 				</p>
 			 			</div> 
 			 		</div>

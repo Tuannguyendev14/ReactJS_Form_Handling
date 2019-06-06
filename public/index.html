@@ -8,15 +8,70 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/css/bootstrap.min.css">
     <title>React App</title>
+
+    
+	<script src="https://code.jquery.com/jquery-3.3.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.toggle').click(function(){
+				$('ul').toggleClass('active');
+			})
+		})
+	</script>
+
+	 
+
+
+    
+    <style type="text/css">
+      @keyframes slide {
+        0%{
+          background-image: url(https://sacpin.vn/wp-content/uploads/2018/06/nen-mua-dien-thoai-hang-nao-.jpg);
+        }
+        20%{
+          background-image: url(https://sacpin.vn/wp-content/uploads/2018/06/nen-mua-dien-thoai-hang-nao-.jpg);
+
+        }
+        20.01%{
+          background-image: url(https://cdn1.vienthonga.vn/image/2017/11/0/100000_7-meo-hay-cho-galaxy-j7-pro-dien-thoai-samsung-tam-trung-ban-chay-hien.jpg);
+        }
+        40%{
+          background-image: url(https://cdn1.vienthonga.vn/image/2017/11/0/100000_7-meo-hay-cho-galaxy-j7-pro-dien-thoai-samsung-tam-trung-ban-chay-hien.jpg);
+        }
+        40.01%{
+          background-image: url(https://znews-photo.zadn.vn/w660/Uploaded/wyhktpu/2018_10_17/image005_2.jpg);
+        }
+        60%{
+          background-image: url(https://znews-photo.zadn.vn/w660/Uploaded/wyhktpu/2018_10_17/image005_2.jpg);
+
+        }
+        60.01%{
+          background-image: url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2019/05/dien-thoai-huawei-gia-re.jpg);
+        }
+        80%{
+          background-image: url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2019/05/dien-thoai-huawei-gia-re.jpg);
+
+        }
+        80.01%{
+          background-image: url(https://bachlongmobile.com/media/wysiwyg/mimix3/SAM_4287-1.jpg);
+        }
+        100%{
+          background-image: url(https://bachlongmobile.com/media/wysiwyg/mimix3/SAM_4287-1.jpg);
+
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>        
+            
     <div id="content"></div>
-    
+    <div id="clock"></div>
 
     <script src="%PUBLIC_URL%/js/jquery-3.2.1.min.js "></script>
     <script src="%PUBLIC_URL%/js/bootstrap.min.js"></script>
+    <script src="swiper-master/dist/js/swiper.min.js"></script>
+    
   </body>
 </html>
