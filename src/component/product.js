@@ -8,20 +8,17 @@ export default class Product extends Component{
 		this.addToCard=this.addToCard.bind(this);	
 	}
 	addToCard(){
-		alert(this.props.id);
+		alert(this.props.id + "    "+  this.props.children+ "      "+this.props.price );
 	}
-	
+		
 	addToCard2 = () => {
 		alert(this.props.children);
-	}
+	}	 
 
-
-	 
+	
 
 	render(){
-		 
-
-		return (
+	 	return (
 			<div>
 			 	<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
 			 		<div className="thumbnail">
@@ -32,8 +29,8 @@ export default class Product extends Component{
 			 					{this.props.price} VND	
 			 				</p>
 			 				<p>
-			 					<a  className="btn btn-primary"  href="true" onClick={this.addToCard2 }>Detail</a>
-			 					<a  className="btn btn-warning"   href="true"  onClick={this.addToCard2 }>Cach2</a>
+			 					<a  className="btn btn-primary" href={`/chitiet/${this.props.id}`}   >Detail</a>
+			 					<a  className="btn btn-warning" herf="#"    onClick={this.addToCard	 }>Cach2</a>
 			 				</p>
 			 			</div> 
 			 		</div>

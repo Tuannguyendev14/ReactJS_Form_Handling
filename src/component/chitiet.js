@@ -21,7 +21,7 @@ export default class Chitiet extends Component{
                         
                     </div>
                 </div>
-
+  
                 
 			 	 
 			</div>
