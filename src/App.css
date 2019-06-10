@@ -128,10 +128,9 @@ ul li a:hover{
 	cursor: pointer;
 	font-weight: bold;
 }
+
 @media (max-width: 992px) {
-	.search{
-		display: block;
-	}
+	
 
 	.toggle{
 		display: block;

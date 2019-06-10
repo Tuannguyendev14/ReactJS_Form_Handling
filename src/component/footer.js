@@ -14,7 +14,7 @@ export default class Footer extends Component {
                         </div>
                         <div className="inner">
                             <div className="form-group">
-                            <input  id="nl_email" className="validate[required]" placeholder="Enter your email address" type="text" defaultValue /> <label htmlFor="nl_email" className="sr-only">Email Address</label> <button type="submit" className="btn btn-motive">Join</button>
+                            <input  id="nl_email" className="validate[required]" placeholder="Enter your email address" type="text" defaultValue /> <label htmlFor="nl_email" className="sr-only">Email Address</label> <button type="submit" className="btn btn-success">Join</button>
                             </div>
                         </div>
                         </div>

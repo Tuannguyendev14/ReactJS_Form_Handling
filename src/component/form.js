@@ -179,13 +179,13 @@ export default class Form extends Component {
                                         <div className = "col-md-3 col-lg-4" > </div> 
                                         <div className = "col-md-9 col-lg-8" >
                                             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <button type = "button" className = "btn btn-sm btn-primary"   > <Link to="/" className="nav-link"> Home </Link></button>
+                                                <button type = "button" className = "btn btn-primary"   > <Link to="/" className="nav-link"><span className="glyphicon glyphicon-th-large"></span> Home </Link></button>
                                             </div>
                                             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <button type = "submit"  className = "btn btn-sm btn-success">    Save   </button> 
+                                                <button type = "submit"  className = "btn btn-success">  <span className="glyphicon glyphicon-ok"></span>  Save   </button> 
                                             </div>
                                             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <button type = "reset"  className = "btn btn-sm btn-warning " > Reset </button> 
+                                                <button type = "reset"  className = "btn btn-sm btn-warning " > <span className="glyphicon glyphicon-menu-left"></span> Reset </button> 
                                             </div>
                                         </div>
                                     </div>

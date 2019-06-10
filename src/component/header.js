@@ -19,7 +19,7 @@ export default class Header extends Component {
 				  <li><a href="true">Contact us</a></li>
 				  <li><a href>About</a></li>
 				  <li><a href>Services</a></li>
-				  <li><a href>Prototypes</a></li>
+				  <li><Link to="/task" className="nav-link"> Manage Task</Link></li>
 				  <li><Link to="/form" className="nav-link"> Form</Link></li>
 				  <li><Link to="/table" className="nav-link"> List  </Link></li>
 				  <li className="dropdown">
