@@ -61,11 +61,14 @@ export default class TaskManagement extends Component {
             isDisplayform: false
         });
     }
+    onSubmit=(name,status)=>{
+        console.log(name,status);
+    }
  
 
     render() {
         var { tasks, isDisplayform} = this.state; // var tasks = this.state.tasks
-        var elmTaskForm = isDisplayform ? <TaskForm onCloseForm={this.onCloseForm}/> : '';
+        var elmTaskForm = isDisplayform ? <TaskForm onSubmit={this.onSubmit} onCloseForm={this.onCloseForm}/> : '';
         return ( 
             <div className = "container"> 
                 <div className="text-center">
