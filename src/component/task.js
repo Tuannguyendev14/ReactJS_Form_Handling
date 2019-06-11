@@ -9,7 +9,8 @@ export default class TaskManagement extends Component {
     constructor(props){
         super(props);
         this.state={
-            tasks:[] // id, name, status
+            tasks:[] ,// id, name, status
+            isDisplayform:false
         }
     }
 
@@ -48,23 +49,42 @@ export default class TaskManagement extends Component {
 
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
+
+    onToggleForm=() =>{
+        this.setState({
+            isDisplayform: !this.state.isDisplayform
+        });
+    }
+
+    onCloseForm=()=>{
+        this.setState({
+            isDisplayform: false
+        });
+    }
  
 
     render() {
-        var { tasks} = this.state; // var tasks = this.state.tasks
+        var { tasks, isDisplayform} = this.state; // var tasks = this.state.tasks
+        var elmTaskForm = isDisplayform ? <TaskForm onCloseForm={this.onCloseForm}/> : '';
         return ( 
-            <div className = "container">
+            <div className = "container"> 
                 <div className="text-center">
                     <h3>Task Management</h3><hr/>
                 </div>
                 <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                    <div className={isDisplayform? "col-xs-12 col-sm-12 col-md-12 col-lg-4" :""}>
                         {/*Form*/}
-                        <TaskForm/>
+                       {elmTaskForm}
                     </div>
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-                        <button type="button" className="btn btn-primary"> <span className="glyphicon glyphicon-plus"></span>   Add tasks</button>
-                        <button type="button" className="btn btn-warning" onClick={this.onGenerateData}> <span className="glyphicon glyphicon-plus"></span>   Generate</button>
+                    <div className={isDisplayform? "col-xs-12 col-sm-12 col-md-12 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+                        <button type="button" className="btn btn-primary"
+                        onClick={this.onToggleForm}>
+                             <span className="glyphicon glyphicon-plus"></span> 
+                              Add tasks</button>
+                        <button type="button" className="btn btn-warning" 
+                        onClick={this.onGenerateData}> <span className="glyphicon glyphicon-plus"></span> 
+                          Generate
+                          </button>
                         {/*Search and Sort*/}
                         <Control/>
                         <div className="row">
