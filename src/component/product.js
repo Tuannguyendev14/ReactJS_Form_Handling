@@ -15,8 +15,6 @@ export default class Product extends Component{
 		alert(this.props.children);
 	}	 
 
-	
-
 	render(){
 	 	return (
 			<div>

@@ -53,16 +53,33 @@ export default class TaskForm extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps && nextProps.task){
+            this.setState({
+                id: nextProps.task.id,
+                name: nextProps.task.name,
+                status : nextProps.task.status
+            });
+
+        }else if(!nextProps.task){
+            this.setState({
+                id: '',
+                name: '',
+                status : false
+            });
+        }
+    }
+
     render() {
         var {id} = this.state;
         return ( 
             <div className="panel panel-danger">
                 <div className="panel-heading">
-                    <h3 className="panel-title">
-                    {id!=='' ? 'Update information' : 'Add tasks'}
+                    <p className="text-center">
+                    { id !=="" ? 'Add tasks' : ' Update tasks '}
                     <span className="glyphicon glyphicon-remove text-right"
                     onClick={this.onCloseForm}></span>
-                    </h3> 
+                    </p> 
                 </div> 
                 <div className="panel-body">
                     <form onSubmit={this.onSubmit}>

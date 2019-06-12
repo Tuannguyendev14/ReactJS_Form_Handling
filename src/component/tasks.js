@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+ 
 import TaskForm from './taskform';
 import Control from './control'; 
 import TaskList from './tasklist';
@@ -65,9 +65,19 @@ export default class TaskManagement extends Component {
 
     // Dong mo form , xet gia tri nguoc lai
     onToggleForm=() =>{
-        this.setState({
-            isDisplayform: !this.state.isDisplayform
-        });
+        if(this.state.isDisplayform && this.state.taskEditting!== null){
+             
+            this.setState({
+                 
+                isDisplayform: true,
+                taskEditting : null
+            });
+        }else{
+            this.setState({
+                isDisplayform: !this.state.isDisplayform,
+                taskEditting : null
+            });
+        }
     }
 
     // Dong form
@@ -92,11 +102,10 @@ export default class TaskManagement extends Component {
         }else{
             var index=this.findIndex(data.id);
             tasks[index]= data;
-            
         }
         this.setState({
             tasks:tasks,
-            taskEditting :null
+            
         });  
         localStorage.setItem('tasks', JSON.stringify(tasks));       
     }
@@ -143,7 +152,7 @@ export default class TaskManagement extends Component {
         var taskEditting= tasks[index];
          
         this.setState({
-            taskEditting:taskEditting
+            taskEditting: taskEditting
         });
         this.onShowForm();
                 
