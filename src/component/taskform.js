@@ -42,12 +42,24 @@ export default class TaskForm extends Component {
         });
     }
 
+    componentWillMount(){
+        if(this.props.task){
+            this.setState({
+                id: this.props.task.id,
+                name: this.props.task.name,
+                status :this.props.task.status
+            });
+
+        }
+    }
+
     render() {
+        var {id} = this.state;
         return ( 
             <div className="panel panel-danger">
                 <div className="panel-heading">
                     <h3 className="panel-title">
-                    Add tasks
+                    {id!=='' ? 'Update information' : 'Add tasks'}
                     <span className="glyphicon glyphicon-remove text-right"
                     onClick={this.onCloseForm}></span>
                     </h3> 

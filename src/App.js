@@ -7,7 +7,7 @@ import Login from './component/login';
 import Homepage from './component/homepage';
 import Table from './component/table';
 import Chitiet from './component/chitiet';
-import TaskManagement from './component/task';
+import TaskManagement from './component/tasks';
 
 import {BrowserRouter, Route} from 'react-router-dom';
 
