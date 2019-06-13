@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TaskForm from './taskform';
 import Control from './control'; 
 import TaskList from './tasklist';
+import _ from 'lodash';
 
 export default class TaskManagement extends Component {
      
@@ -80,15 +81,16 @@ export default class TaskManagement extends Component {
     onSubmit=(data)=>{
         var {tasks} = this.state;
 
-        if(data.id !==""){
-            console.log(data.id);
-            var index=this.findIndex(data.id);
-            tasks[index]= data;
-            
-        }else{
+        if(data.id ===""){
             data.id =  this.generateID();
             console.log(data.id);
-            tasks.push(data);
+            tasks.push(data);            
+        }else{            
+            //var index=this.findIndex(data.id);
+            var index = _.findIndex(tasks, (task)=> {
+                return task.id == data.id;
+            });
+            tasks[index]= data;
         }
 
         this.setState({
@@ -108,7 +110,12 @@ export default class TaskManagement extends Component {
  
     onUpdateStatus=(id)=>{
         var {tasks} = this.state;
-        var index= this.findIndex(id);
+
+        //var index= this.findIndex(id);
+       
+        var index = _.findIndex(tasks,(task) => {
+             return task.id == id ; 
+            });
         if(index!==-1){
             tasks[index].status=!tasks[index].status;
             this.setState({
@@ -118,20 +125,24 @@ export default class TaskManagement extends Component {
         }
     }
 
-    findIndex=(id)=>{
-        var {tasks} = this.state;
-        var result = -1;
-        tasks.forEach((task,index)=>{
-            if(task.id===id){
-                result = index;
-            }
-        });
-        return result;
-    }
+    // findIndex=(id)=>{
+    //     var {tasks} = this.state;
+    //     var result = -1;
+    //     tasks.forEach((task,index)=>{
+    //         if(task.id===id){
+    //             result = index;
+    //         }
+    //     });
+    //     return result;
+    // }
 
     onDelete=(id)=>{
         var {tasks} = this.state;
-        var index= this.findIndex(id);
+        //var index= this.findIndex(id);
+        var index = _.findIndex(tasks, (task)=> {
+             return task.id == id;
+        });
+
         if(index!==-1){
             tasks.splice(index,1);
             this.setState({
@@ -144,7 +155,10 @@ export default class TaskManagement extends Component {
 
     onUpdate=(id)=>{
         var {tasks} = this.state;
-        var index= this.findIndex(id);
+        //var index= this.findIndex(id);
+        var index = _.findIndex(tasks, (task)=> {
+            return task.id == id;
+        });
         var taskEditting= tasks[index];
          
         this.setState({
@@ -197,8 +211,12 @@ export default class TaskManagement extends Component {
         }
 
         if(keyword){
-            tasks = tasks.filter((task) => {
-                return task.name.toLowerCase().indexOf(keyword)!== -1;
+            // tasks = tasks.filter((task) => {
+            //     return task.name.toLowerCase().indexOf(keyword)!== -1;
+            // });
+
+            tasks = _.filter(tasks, (task) =>{
+                return task.name.toLowerCase().indexOf(keyword)!== -1; 
             });
         }
 
