@@ -38,8 +38,6 @@ export default class TaskManagement extends Component {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     } 
 
-   
-
     componentWillMount(){
         if(localStorage && localStorage.getItem ('tasks')){
             var tasks = JSON.parse(localStorage.getItem('tasks'));
