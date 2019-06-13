@@ -5,47 +5,30 @@ import Control from './control';
 import TaskList from './tasklist';
 
 export default class TaskManagement extends Component {
+     
 
     constructor(props){
         super(props);
         this.state={
             tasks:[] ,// id, name, status
             isDisplayform:false,
-            taskEditting: null
+            taskEditting: null,
+            filter : {
+                name:'',
+                status:-1
+            },
+            keyword:'',
+            sortBy:'name',
+            sortValue:1
         }
     }
     onGenerateData =()=>{
         var tasks = [
             {
-                id:1,
+                id: this.generateID(),
                 name:'Read documents about React Life Circle',
                 status: false
-            },
-            {
-                id: 2,
-                name:'Create a form',
-                status:true
-            },
-            {
-                id:  3,
-                name:'Use props and state to get the data from the form',
-                status:true
-            },{
-                id:4,
-                name:'Devided the components',
-                status: false
-            },
-            {
-                id: 5,
-                name:'Store data into local storage',
-                status:true
-            },
-            {
-                id:  6,
-                name:'Update data',
-                status:true
             }
-        
         ];
         this.setState({
             tasks:tasks
@@ -53,6 +36,8 @@ export default class TaskManagement extends Component {
 
         localStorage.setItem('tasks', JSON.stringify(tasks));
     } 
+
+   
 
     componentWillMount(){
         if(localStorage && localStorage.getItem ('tasks')){
@@ -66,9 +51,7 @@ export default class TaskManagement extends Component {
     // Dong mo form , xet gia tri nguoc lai
     onToggleForm=() =>{
         if(this.state.isDisplayform && this.state.taskEditting!== null){
-             
             this.setState({
-                 
                 isDisplayform: true,
                 taskEditting : null
             });
@@ -96,18 +79,31 @@ export default class TaskManagement extends Component {
 
     onSubmit=(data)=>{
         var {tasks} = this.state;
-        if(data.id===''){
-            data.id = 4;
-            tasks.push(data);
-        }else{
+
+        if(data.id !==""){
+            console.log(data.id);
             var index=this.findIndex(data.id);
             tasks[index]= data;
+            
+        }else{
+            data.id =  this.generateID();
+            console.log(data.id);
+            tasks.push(data);
         }
+
         this.setState({
             tasks:tasks,
             
         });  
         localStorage.setItem('tasks', JSON.stringify(tasks));       
+    } 
+
+    s4(){
+        return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
+    }
+
+    generateID(){
+        return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() +'-' + this.s4() +'-' + this.s4() + this.s4() + this.s4() ;
     }
  
     onUpdateStatus=(id)=>{
@@ -159,8 +155,66 @@ export default class TaskManagement extends Component {
             
     }
 
+    onFilter=(filterName, filterStatus)=>{
+        filterStatus=parseInt(filterStatus,10);
+        this.setState({
+            filter:{
+                name:filterName.toLowerCase(),
+                status:filterStatus
+            }
+        })
+    }
+
+    onSearch=(keyword)=>{
+       this.setState({
+           keyword: keyword
+       });
+    }
+
+    onSort=(sortBy, sortValue)=>{
+        console.log(sortBy, sortValue);
+        this.setState({
+            sortBy: sortBy,
+            sortValue:sortValue
+        });
+    }
+
     render() {
-        var { tasks, isDisplayform, taskEditting} = this.state; // var tasks = this.state.tasks
+        var { tasks, isDisplayform, taskEditting, filter,keyword, sortBy, sortValue } = this.state; // var tasks = this.state.tasks
+        if(filter){
+            if(filter.name){
+                tasks = tasks.filter((task) => {
+                    return task.name.toLowerCase().indexOf(filter.name)!== -1;
+                });
+            }
+            tasks = tasks.filter((task) => {
+                if(filter.status=== -1){
+                   return task;
+                }else{
+                    return task.status === (filter.status=== 1 ? true :false);
+                }
+             });
+        }
+
+        if(keyword){
+            tasks = tasks.filter((task) => {
+                return task.name.toLowerCase().indexOf(keyword)!== -1;
+            });
+        }
+
+        if(sortBy==="name"){
+            tasks.sort((a,b)=>{
+                if(a.name > b.name) return sortValue;
+                if(a.name < b.name ) return -sortValue;
+                else return 0;
+            });
+        }else{
+            tasks.sort((a,b)=>{
+                if(a.status > b.status) return -sortValue;
+                if(a.status < b.status ) return sortValue;
+                else return 0;
+            });
+        }
 
         var elmTaskForm = isDisplayform ? <TaskForm onSubmit={this.onSubmit} 
                                                     onCloseForm={this.onCloseForm}
@@ -191,7 +245,8 @@ export default class TaskManagement extends Component {
                             </button> 
                          
                         {/*Search and Sort*/}
-                        <Control/>
+                        <Control onSearch={this.onSearch}  onSort = {this.onSort}  sortBy={sortBy} sortValue={sortValue} />
+
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 {/*List task*/}
@@ -200,6 +255,7 @@ export default class TaskManagement extends Component {
                                     onUpdateStatus={this.onUpdateStatus}
                                     onDelete={this.onDelete}
                                     onUpdate={this.onUpdate}
+                                    onFilter={this.onFilter}
                                 />
                             </div>
                         </div>

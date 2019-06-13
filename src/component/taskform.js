@@ -70,13 +70,14 @@ export default class TaskForm extends Component {
         }
     }
 
+
     render() {
         var {id} = this.state;
         return ( 
             <div className="panel panel-danger">
                 <div className="panel-heading">
                     <p className="text-center">
-                    { id !=="" ? 'Add tasks' : ' Update tasks '}
+                    { id ==="" ? 'Add tasks' : ' Update tasks '}
                     <span className="glyphicon glyphicon-remove text-right"
                     onClick={this.onCloseForm}></span>
                     </p> 
