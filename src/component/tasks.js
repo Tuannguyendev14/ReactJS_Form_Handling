@@ -210,7 +210,7 @@ export default class TaskManagement extends Component {
                 }else{
                     return task.status === (filter.status=== 1 ? true :false);
                 }
-             });
+            });
         }
 
         if(keyword){
@@ -270,7 +270,7 @@ export default class TaskManagement extends Component {
 
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                {/*List task*/}
+                                {/*List task and filter data (name and status )*/}
                                 <TaskList  
                                     tasks={tasks}
                                     onUpdateStatus={this.onUpdateStatus}
