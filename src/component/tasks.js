@@ -29,6 +29,11 @@ export default class TaskManagement extends Component {
                 id: this.generateID(),
                 name:'Read documents about React Life Circle',
                 status: false
+            },
+            {
+                id: this.generateID(),
+                name:'Write test case',
+                status: true
             }
         ];
         this.setState({
@@ -267,7 +272,7 @@ export default class TaskManagement extends Component {
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 {/*List task*/}
                                 <TaskList  
-                                tasks={tasks}
+                                    tasks={tasks}
                                     onUpdateStatus={this.onUpdateStatus}
                                     onDelete={this.onDelete}
                                     onUpdate={this.onUpdate}
